@@ -1,4 +1,4 @@
-package ledcontroller
+package switchledcontroller
 
 import chisel3._
 
@@ -21,9 +21,9 @@ import chisel3._
   * sbt 'test:runMain ledcontroller.LedControllerMain --backend-name verilator'
   * }}}
   */
-object LedControllerMain extends App {
-  iotesters.Driver.execute(args, () => new LedController) {
-    c => new LedControllerUnitTester(c)
+object SwitchLedControllerMain extends App {
+  iotesters.Driver.execute(args, () => new SwitchLedController) {
+    c => new SwitchLedControllerUnitTester(c)
   }
 }
 
@@ -42,6 +42,6 @@ object LedControllerMain extends App {
   * test:runMain ledcontroller.LedControllerRepl --help
   * }}}
   */
-object LedControllerRepl extends App {
-  iotesters.Driver.executeFirrtlRepl(args, () => new LedController)
+object SwitchLedControllerRepl extends App {
+  iotesters.Driver.executeFirrtlRepl(args, () => new SwitchLedController)
 }
