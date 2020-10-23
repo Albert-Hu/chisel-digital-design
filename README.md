@@ -1,8 +1,11 @@
 # DE10 Nano Led Controller
 
-Soruce codes at:
+Chisel soruce codes:
 - src/main/scala/de10-nano-led-controller
 - src/test/scala/de10-nano-led-controller
+
+FPGA demo:
+- fpga/de10-nano-led-controller/fpga
 
 This example uses two switches to control the led lighting in 4 modes.
 
@@ -10,6 +13,7 @@ This example uses two switches to control the led lighting in 4 modes.
 
 The status starts at step 1 and ends at step 9 then repeating from step 1.
 
+```
 - o: led on.
 - x: led off.
 
@@ -22,11 +26,13 @@ The status starts at step 1 and ends at step 9 then repeating from step 1.
 7. LED Status: x x o x x x x x
 8. LED Status: x o x x x x x x
 9. LED Status: o x x x x x x x
+```
 
 ## Mode 2, Switch(Binary Format): 01
 
 The status starts at step 1 and ends at step 9 then repeating from step 1.
 
+```
 - o: led on.
 - x: led off.
 
@@ -39,11 +45,13 @@ The status starts at step 1 and ends at step 9 then repeating from step 1.
 7. LED Status: x x x x x o x x
 8. LED Status: x x x x x x o x
 9. LED Status: x x x x x x x o
+```
 
 ## Mode 3, Switch(Binary Format): 10
 
 The status starts at step 1 and ends at step 9 then repeating from step 1.
 
+```
 - o: led on.
 - x: led off.
 
@@ -56,11 +64,13 @@ The status starts at step 1 and ends at step 9 then repeating from step 1.
 7. LED Status: x x o o o o o o
 8. LED Status: x o o o o o o o
 9. LED Status: o o o o o o o o
+```
 
 ## Mode 4, Switch(Binary Format): 11
 
 The status starts at step 1 and ends at step 9 then repeating from step 1.
 
+```
 - o: led on.
 - x: led off.
 
@@ -73,3 +83,4 @@ The status starts at step 1 and ends at step 9 then repeating from step 1.
 7. LED Status: o o o o o o x x
 8. LED Status: o o o o o o o x
 9. LED Status: o o o o o o o o
+```
