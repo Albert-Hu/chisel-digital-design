@@ -9,6 +9,18 @@ FPGA demo:
 
 This example uses two switches to control the led lighting in 4 modes.
 
+Run the test:
+```
+sbt 'test:runMain ledcontroller.LedControllerMain'
+```
+
+Generate the verilog RTL:
+```
+sbt 'runMain ledcontroller.LedController --target-dir /path/to'
+```
+
+**NOTE: the /path/to should be changed to the path where the generated codes are put in.**
+
 ## Mode 1, Switch(Binary Format): 00
 
 The status starts at step 1 and ends at step 9 then repeating from step 1.
