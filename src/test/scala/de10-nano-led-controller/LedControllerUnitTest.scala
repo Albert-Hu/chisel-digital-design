@@ -21,25 +21,43 @@ class LedControllerUnitTester(c: LedController) extends PeekPokeTester(c) {
     padding + binary
   }
 
-  for (i <- 1 to 10 by 1) {
-    val sw = i % 4
-    var led = 0
-    printf("Switch: %s\n", toBinaryString(sw, 2))
+  var sw = 0
+  var led = 0
+  for (i <- 0 to 50 by 1) {
+    // printf("Switch: %s\n", toBinaryString(sw, 2))
+    for (j <- 1 to 100 by 1) {
+      /*
+      printf("LED: %s : %s\n",
+          toBinaryString(peek(c.io.out).toInt, 8),
+          toBinaryString(led, 8))
+      */
+
+      expect(c.io.out, led)
+      step(clkPerSecond)
+
+      if (led == 0) {
+        /* reset led */
+        led = sw match {
+          case 0 => 1
+          case 1 => 0x80
+          case 2 => 1
+          case _ => 0x80
+        }
+      } else {
+        /* update led */
+        led = sw match {
+          case 0 => if (led == 0x80) 0 else led << 1
+          case 1 => led >> 1
+          case 2 => if (led == 0xff) 0 else (led << 1) + 1
+          case 3 => if (led == 0xff) 0 else (led >> 1) + 0x80
+        }
+      }
+    }
+    /* change the switch */
+    sw = (sw + 1) % 4
+    led = 0
     poke(c.io.in, sw)
     step(1)
-    for (j <- 1 to 10 by 1) {
-      step(clkPerSecond)
-      led = sw match {
-        case 0 => if (led == 0 || led == 0x80) 1 else (led << 1)
-        case 1 => if (led == 0) 0x80 else (led >> 1)
-        case 2 => if (led == 0xff) 0 else (led << 1) + 1
-        case 3 => if (led == 0xff) 0 else (led >> 1) + 0x80
-      }
-      printf("Step %02d. LED: %s : %s\n",
-        j,
-        toBinaryString(peek(c.io.out).toInt, 8),
-        toBinaryString(led, 8))
-    }
   }
 }
 
